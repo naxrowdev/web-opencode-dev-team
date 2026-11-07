@@ -1,0 +1,7 @@
+{
+  "kit": "opencode-dev-team",
+  "version": "0.2.1",
+  "installed_at": "2026-11-07",
+  "source": "git@github.com:naxrowdev/opencode-dev-team.git",
+  "manifest": "kit/include.txt"
+}
