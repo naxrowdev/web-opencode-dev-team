@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Background: grafito azulado (#0E1216) -->
+  <rect width="32" height="32" fill="#0E1216" rx="2"/>
+  <!-- 12 role colors as a 4x3 grid, 6x6 each, 1px gap -->
+  <g fill="none">
+    <rect x="2" y="2" width="6" height="6" fill="#A855F7"/>  <!-- tech-lead -->
+    <rect x="9" y="2" width="6" height="6" fill="#F97316"/>  <!-- product-owner -->
+    <rect x="16" y="2" width="6" height="6" fill="#EAB308"/> <!-- business-analyst -->
+    <rect x="23" y="2" width="6" height="6" fill="#3B82F6"/>  <!-- architect -->
+    <rect x="2" y="9" width="6" height="6" fill="#EC4899"/>  <!-- ux-designer -->
+    <rect x="9" y="9" width="6" height="6" fill="#10B981"/>  <!-- backend-dev -->
+    <rect x="16" y="9" width="6" height="6" fill="#06B6D4"/>  <!-- frontend-dev -->
+    <rect x="23" y="9" width="6" height="6" fill="#84CC16"/>  <!-- qa-engineer -->
+    <rect x="2" y="16" width="6" height="6" fill="#EF4444"/>  <!-- code-reviewer -->
+    <rect x="9" y="16" width="6" height="6" fill="#F43F5E"/>  <!-- security-engineer -->
+    <rect x="16" y="16" width="6" height="6" fill="#64748B"/> <!-- devops-sre -->
+    <rect x="23" y="16" width="6" height="6" fill="#D946EF"/>  <!-- tech-writer -->
+  </g>
+</svg>
