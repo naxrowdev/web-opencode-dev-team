@@ -62,8 +62,8 @@ describe('install section', () => {
     const code = container.querySelector('#instalacion pre code')
     expect(code).not.toBeNull()
     expect(code!.textContent).toBe(install.commands)
-    expect(code!.textContent).toContain('git clone https://github.com/naxrowdev/opencode-dev-team.git')
-    expect(code!.textContent).toContain('sh opencode-dev-team/kit/install.sh')
+    expect(code!.textContent).toContain('curl -fsSL https://raw.githubusercontent.com/naxrowdev/opencode-dev-team/main/kit/install.sh | sh')
+    expect(code!.textContent).toContain('--ref v1.0.0')
   })
 
   it('offers the copy button and a no-script fallback', () => {
@@ -77,10 +77,10 @@ describe('install section', () => {
     expect(fallback!.textContent).toContain('Sin JavaScript')
   })
 
-  it('lists the three install notes', () => {
+  it('lists the four install notes', () => {
     const { container } = render(<App />)
     const notes = Array.from(container.querySelectorAll('#instalacion ul[data-notes] > li'))
-    expect(notes).toHaveLength(3)
+    expect(notes).toHaveLength(4)
   })
 })
 
@@ -106,7 +106,7 @@ describe('closing section', () => {
   it('shows the technical sheet with the version and the stage', () => {
     const { container } = render(<App />)
     const closing = container.querySelector('#cierre')
-    expect(closing).toHaveTextContent('v0.2.1')
-    expect(closing).toHaveTextContent('pre-1.0')
+    expect(closing).toHaveTextContent('v1.0.0')
+    expect(closing).toHaveTextContent('stable')
   })
 })

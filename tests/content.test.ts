@@ -31,8 +31,8 @@ const ROLE_IDS = [
 
 describe('site metadata', () => {
   it('declares the kit version, stage and skill total', () => {
-    expect(site.version).toBe('v0.2.1')
-    expect(site.stage).toBe('pre-1.0')
+    expect(site.version).toBe('v1.0.0')
+    expect(site.stage).toBe('stable')
     expect(site.skillsTotal).toBe(55)
     expect(site.repoUrl).toBe('https://github.com/naxrowdev/opencode-dev-team')
     expect(site.repoLabel).toBe('github.com/naxrowdev/opencode-dev-team')
@@ -198,13 +198,13 @@ describe('permissions', () => {
 describe('install', () => {
   it('keeps the exact three-command block that the copy button writes', () => {
     const expected = [
-      '# 1. cloná el kit al lado de tu proyecto',
-      'git clone https://github.com/naxrowdev/opencode-dev-team.git',
+      '# 1. desde la raíz de tu proyecto, instala el equipo (última estable)',
+      'curl -fsSL https://raw.githubusercontent.com/naxrowdev/opencode-dev-team/main/kit/install.sh | sh',
       '',
-      '# 2. desde la raíz de tu proyecto, instalá el equipo',
-      'sh opencode-dev-team/kit/install.sh',
+      '# 2. versión fijada (tag publicado)',
+      'curl -fsSL https://raw.githubusercontent.com/naxrowdev/opencode-dev-team/main/kit/install.sh | sh -s -- --ref v1.0.0',
       '',
-      '# 3. verificá que todo quedó en su lugar',
+      '# 3. verifica que todo quedó en su lugar',
       'sh opencode-dev-team/kit/selftest.sh',
     ].join('\n')
 
@@ -213,8 +213,8 @@ describe('install', () => {
     expect(install.commands.endsWith('sh opencode-dev-team/kit/selftest.sh')).toBe(true)
   })
 
-  it('carries the three notes', () => {
-    expect(install.notes).toHaveLength(3)
+  it('carries the four notes', () => {
+    expect(install.notes).toHaveLength(4)
   })
 
   it('balances the inline-code markers in every copy string', () => {

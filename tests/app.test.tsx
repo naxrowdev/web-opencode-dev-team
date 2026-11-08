@@ -51,8 +51,8 @@ describe('page shell', () => {
   it('shows the version chip and the GitHub link in the masthead', () => {
     render(<App />)
     const header = screen.getByRole('banner')
-    expect(header).toHaveTextContent('v0.2.1')
-    expect(header).toHaveTextContent('pre-1.0')
+    expect(header).toHaveTextContent('v1.0.0')
+    expect(header).toHaveTextContent('stable')
     expect(screen.getByRole('link', { name: 'GitHub' })).toBeInTheDocument()
   })
 })

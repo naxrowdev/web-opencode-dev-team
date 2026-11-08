@@ -17,8 +17,8 @@ describe('hero', () => {
     const { container } = render(<App />)
     const hero = container.querySelector('#inicio')
     expect(hero).not.toBeNull()
-    expect(screen.getByRole('banner')).toHaveTextContent('v0.2.1')
-    expect(screen.getByRole('banner')).toHaveTextContent('pre-1.0')
+    expect(screen.getByRole('banner')).toHaveTextContent('v1.0.0')
+    expect(screen.getByRole('banner')).toHaveTextContent('stable')
 
     const counts = Array.from(hero!.querySelectorAll('[data-stat]')).map((item) =>
       item.textContent?.replace(/\s+/g, ' ').trim(),

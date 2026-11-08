@@ -13,8 +13,8 @@ import type {
 } from './types'
 
 export const site: SiteMeta = {
-  version: 'v0.2.1',
-  stage: 'pre-1.0',
+  version: 'v1.0.0',
+  stage: 'stable',
   repoUrl: 'https://github.com/naxrowdev/opencode-dev-team',
   repoLabel: 'github.com/naxrowdev/opencode-dev-team',
   skillsTotal: 55,
@@ -200,7 +200,7 @@ export const highlightedSkills: SkillItem[] = [
   },
   {
     name: 'code-simplification',
-    description: 'El mejor código es el que no escribís: el diff más corto que funcione.',
+    description: 'El mejor código es el que no escribes: el diff más corto que funcione.',
   },
   {
     name: 'playwright-best-practices',
@@ -220,7 +220,7 @@ export const memoryBlocks: MemoryBlock[] = [
   {
     title: 'Estado',
     ref: 'docs/context/STATE.md',
-    body: 'Se inyecta como instrucción al arrancar cada sesión. Es una afirmación a verificar contra el repo, no un contrato ciego: si hay drift, el tech-lead lo corrige antes de planificar.',
+    body: 'Se inyecta como instrucciones ambient (config instructions en opencode.jsonc) al arrancar cada sesión. Es una afirmación a verificar contra el repo, no un contrato ciego: si hay drift, el tech-lead lo corrige antes de planificar.',
   },
   {
     title: 'Decisiones',
@@ -264,18 +264,19 @@ export const permissionGroups: PermissionGroup[] = [
 ]
 
 export const install: Install = {
-  commands: `# 1. cloná el kit al lado de tu proyecto
-git clone https://github.com/naxrowdev/opencode-dev-team.git
+  commands: `# 1. desde la raíz de tu proyecto, instala el equipo (última estable)
+curl -fsSL https://raw.githubusercontent.com/naxrowdev/opencode-dev-team/main/kit/install.sh | sh
 
-# 2. desde la raíz de tu proyecto, instalá el equipo
-sh opencode-dev-team/kit/install.sh
+# 2. versión fijada (tag publicado)
+curl -fsSL https://raw.githubusercontent.com/naxrowdev/opencode-dev-team/main/kit/install.sh | sh -s -- --ref v1.0.0
 
-# 3. verificá que todo quedó en su lugar
+# 3. verifica que todo quedó en su lugar
 sh opencode-dev-team/kit/selftest.sh`,
   notes: [
-    'Es re-ejecutable: para actualizar el kit, volvés a correr el comando 2.',
+    'Es re-ejecutable: para actualizar el kit, vuelves a correr el comando 1.',
     'La primera vez siembra `docs/context/` vacío: el estado arranca en tu proyecto, no en el mío.',
     'Toca `.opencode/agents`, `.opencode/skills`, `AGENTS.md`, `opencode.jsonc` y `docs/`. Nada fuera de tu repo.',
+    'Para desinstalar: `curl -fsSL .../kit/uninstall.sh | sh` (plan) y `--yes` para aplicar.',
   ],
 }
 
@@ -299,20 +300,20 @@ export const copy: Copy = {
     wordmark: 'opencode-dev-team',
     githubLabel: 'GitHub',
     title: 'Tu próximo proyecto no necesita más prompts. Necesita un equipo.',
-    lede: 'Una configuración, doce roles: convertí OpenCode en un equipo de desarrollo con pipeline, stack fijo y permisos que no te dejan en banda.',
+    lede: 'Una configuración, doce roles: convierte OpenCode en un equipo de desarrollo con pipeline, stack fijo y permisos que no te dejan en banda.',
     glossary:
-      'Agente primario: reparte el trabajo. Subagente: ejecuta un rol. Acá hay uno y once.',
+      'Agente primario: reparte el trabajo. Subagente: ejecuta un rol. Aquí hay uno y once.',
     primaryCta: { label: 'Abrir el repo en GitHub', href: site.repoUrl },
     secondaryCta: { label: 'Ver los comandos', href: '#instalacion' },
   },
   problem: {
-    title: 'Tenés un modelo buenísimo y cero proceso.',
+    title: 'Tienes un modelo buenísimo y cero proceso.',
     lede: 'Cada feature arranca de cero. No porque el modelo falle, sino porque nadie definió quién hace qué, en qué orden y con qué criterio se aprueba.',
     closing: 'No falta más IA. Falta proceso que se repita igual todos los días.',
     symptoms: [
       {
         title: 'El contexto se pierde entre sesiones',
-        body: 'Abrís otra sesión y el agente no sabe qué decidiste ayer, ni por qué. Lo volvés a explicar, o peor: lo asume.',
+        body: 'Abres otra sesión y el agente no sabe qué decidiste ayer, ni por qué. Lo vuelves a explicar, o peor: lo asume.',
       },
       {
         title: 'La calidad queda a criterio del momento',
@@ -320,7 +321,7 @@ export const copy: Copy = {
       },
       {
         title: 'El agente puede tocar lo irreversible',
-        body: 'Un `git push` de más, un `.env` leído, un deploy sin que nadie lo apruebe. El costo lo pagás vos.',
+        body: 'Un git push de más, un .env leído, un despliegue sin que nadie lo apruebe. El costo lo pagas tú.',
       },
     ],
   },
@@ -343,7 +344,7 @@ export const copy: Copy = {
     title: 'El stack no se negocia en cada tarea.',
     lede: '`AGENTS.md` fija las tecnologías y la skill `stack-guard` las hace cumplir antes de instalar un paquete. Cambiar algo requiere un ADR aprobado por una persona.',
     callout:
-      'Si tu stack es otro, este kit no es para vos. Preferimos decírtelo acá y no en tu primer PR.',
+      'Si tu stack es otro, este kit no es para ti. Preferimos decirte aquí y no en tu primer PR.',
     calloutSecondary: 'Cambiar el stack requiere un ADR aprobado por una persona.',
   },
   skills: {
@@ -361,28 +362,28 @@ export const copy: Copy = {
     flow: 'sesión 1 → STATE.md → sesión 2',
   },
   security: {
-    title: '`git push` viene denegado. Vos aprobás lo irreversible.',
-    lede: 'Los permisos son por rol y están en la configuración, no en la buena voluntad del modelo. El equipo prepara el cambio; la acción que no se deshace la ejecutás vos.',
-    closing: 'El equipo prepara todo; vos ejecutás lo que no se puede deshacer.',
+    title: 'git push viene denegado. Tú apruebas lo irreversible.',
+    lede: 'Los permisos son por rol y están en la configuración, no en la buena voluntad del modelo. El equipo prepara el cambio; la acción que no se deshace la ejecutas tú.',
+    closing: 'El equipo prepara todo; tú ejecutas lo que no se puede deshacer.',
     note: 'Los permisos de cada rol se versionan con el resto del kit.',
   },
   install: {
-    title: 'Cloná, instalá, verificá.',
+    title: 'Clona, instala, verifica.',
     lede: 'Tres comandos desde la raíz de tu proyecto. El tercero no es opcional: verifica que los 12 agentes y las 55 skills quedaron donde corresponde.',
     prerequisites:
-      'Necesitás OpenCode V2 y Git. Nada más: no hay cuenta, no hay clave, no hay servicio que registrar.',
+      'Necesitas OpenCode V2 y Git. Nada más: no hay cuenta, no hay clave, no hay servicio que registrar.',
     copyLabel: 'Copiar comandos',
     copiedLabel: 'Copiado',
     copyAriaLabel: 'Copiar los comandos de instalación al portapapeles',
     statusCopied: 'Comandos copiados al portapapeles.',
     statusError:
-      'No se pudo copiar. Seleccioná el texto del bloque y usá Ctrl+C, o Cmd+C en Mac.',
+      'No se pudo copiar. Selecciona el texto del bloque y usa Ctrl+C, o Cmd+C en Mac.',
     noscript:
-      'Sin JavaScript, el botón «Copiar comandos» no funciona: se oculta. Los tres comandos ya están en la página y son texto normal. Seleccionalos y copiá con Ctrl+C, o Cmd+C en Mac. El resto de la página se lee igual.',
+      'Sin JavaScript, el botón "Copiar comandos" no funciona: se oculta. Los tres comandos ya están en la página y son texto normal. Seleccionarlos y copiar con Ctrl+C, o Cmd+C en Mac. El resto de la página se lee igual.',
   },
   closing: {
     title: 'El repo es el argumento.',
-    lede: 'No hay demo que reemplace leer los agentes y las skills. Cloná, mirá el diff, decidí.',
+    lede: 'No hay demo que reemplace leer los agentes y las skills. Clona, mira el diff, decide.',
     cta: { label: 'Abrir el repo en GitHub', href: site.repoUrl },
     facts: [
       {
@@ -395,7 +396,7 @@ export const copy: Copy = {
       },
       {
         title: 'No es un framework',
-        body: 'Es configuración de OpenCode, y la editás como cualquier archivo.',
+        body: 'Es configuración de OpenCode, y la editas como cualquier archivo.',
       },
     ],
     spec: [
